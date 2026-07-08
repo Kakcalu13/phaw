@@ -1,0 +1,14 @@
+# Enforces docs/architecture.md rules D1/D2. Anything not listed is denied by
+# default — in particular, sibling //components/phaw_* are intentionally absent,
+# so this feature CANNOT depend on another feature (no tangle).
+include_rules = [
+  "+base",
+  "+components/keyed_service/content",
+  "+components/keyed_service/core",
+  "+components/phaw_common",
+  "+components/user_prefs",
+  "+content/public",
+  "+services/network/public",
+  "+third_party/adblock_rust_ffi",
+  "+url",
+]
