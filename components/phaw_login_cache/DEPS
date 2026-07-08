@@ -1,0 +1,14 @@
+# Enforces docs/architecture.md rules D1/D2. Sibling //components/phaw_* are
+# intentionally absent — feature-to-feature deps are forbidden (no tangle).
+include_rules = [
+  "+base",
+  "+components/content_settings/core",
+  "+components/keyed_service/content",
+  "+components/keyed_service/core",
+  "+components/phaw_common",
+  "+components/user_prefs",
+  "+content/public",
+  "+net",
+  "+services/network/public",
+  "+url",
+]
