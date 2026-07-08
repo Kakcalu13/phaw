@@ -1,0 +1,13 @@
+# Enforces docs/architecture.md rules D1/D2. Sibling //components/phaw_* are
+# intentionally absent — feature-to-feature deps are forbidden (no tangle).
+#
+# The chrome/ rules apply to the impl only, which is chrome-layer (see BUILD.gn
+# NOTE). The public interface depends on base + tab_groups alone.
+include_rules = [
+  "+base",
+  "+chrome/browser/resource_coordinator",
+  "+chrome/browser/ui/tabs",
+  "+components/phaw_common",
+  "+components/sessions",
+  "+components/tab_groups",
+]

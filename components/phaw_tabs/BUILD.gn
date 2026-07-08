@@ -1,0 +1,49 @@
+# Copyright 2026 The phaw Authors. All rights reserved.
+#
+# Collapsible tabs + hibernation (req 4). See DESIGN.md.
+#
+# NOTE ON LAYERING: the interface (":public") is pure and lives in //components.
+# The implementation touches the tab strip and renderer-discard machinery, which
+# live in //chrome/browser — so in the real tree the ":impl" target belongs at
+# //chrome/browser/ui/phaw_tabs, NOT //components (a //components target may not
+# depend on //chrome). It is listed here for cohesion; move it when wiring
+# Phase 1. Keeping the interface separate is exactly what allows that split.
+
+source_set("public") {
+  sources = [ "public/collapse_controller.h" ]
+  public_deps = [
+    "//base",
+    "//components/tab_groups",
+  ]
+}
+
+# Phase 1: relocate to //chrome/browser/ui/phaw_tabs (chrome-layer).
+source_set("impl") {
+  sources = [
+    "collapse_controller_impl.cc",
+    "collapse_controller_impl.h",
+    "collapse_state_store.cc",
+    "collapse_state_store.h",
+    "renderer_discard_hibernator.cc",
+    "renderer_discard_hibernator.h",
+    "tab_hibernator.h",  # internal hibernator interface (controller depends on this)
+    "tab_group_collapse_listener.cc",
+    "tab_group_collapse_listener.h",
+  ]
+  deps = [
+    ":public",
+    "//chrome/browser/resource_coordinator",  # renderer discard (hibernation)
+    "//chrome/browser/ui/tabs",               # tab group model
+    "//components/phaw_common",
+    "//components/sessions",
+  ]
+}
+
+source_set("unit_tests") {
+  testonly = true
+  sources = [ "collapse_controller_impl_unittest.cc" ]
+  deps = [
+    ":impl",
+    "//testing/gtest",
+  ]
+}
