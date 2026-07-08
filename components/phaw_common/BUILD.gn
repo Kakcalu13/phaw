@@ -1,0 +1,12 @@
+# Copyright 2026 The phaw Authors. All rights reserved.
+#
+# Thin shared-interface layer (docs/architecture.md). Depends ONLY on the engine.
+# Shared interfaces/value types land here as ≥2 features need them — keep it thin;
+# a fat "common" module is how shared-utility tangle starts.
+
+source_set("phaw_common") {
+  sources = [
+    # Add shared interfaces here as features require them. Empty by design today.
+  ]
+  public_deps = [ "//base" ]
+}
