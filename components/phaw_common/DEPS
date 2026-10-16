@@ -1,5 +1,0 @@
-# phaw_common sits directly above the engine and depends on nothing else — no
-# feature, no UI. This one-way arrow is what prevents dependency cycles (tangle).
-include_rules = [
-  "+base",
-]
