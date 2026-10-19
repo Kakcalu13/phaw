@@ -30,3 +30,10 @@ Cargo.lock
 .idea/
 .vscode/
 *.swp
+
+# Android / Gradle
+.gradle/
+build/
+local.properties
+*.apk
+*.keystore
